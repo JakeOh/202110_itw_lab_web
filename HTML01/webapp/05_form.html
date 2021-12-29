@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>HTML Form</title>
+    </head>
+    <body>
+        <h1>HTML Form Tag</h1>
+        <!--  
+        	브라우저(클라이언트)에서 사용자의 입력을 받아서, 입력 내용(데이터)를 서버로 전송하는 방법:
+        	1. <form> 태그 안에서 입력 요소(input element)들을 작성
+        	2. <form> 태그 안에 "submit" 버튼을 클릭하면 입력 요소들에 입력된 내용들이 서버로 전송됨.
+        	
+        	<form> 태그의 속성(attribute):
+        	1. action: 사용자 입력 데이터를 처리할 서버의 주소(html, jsp, php, ...)
+        	2. method: 사용자 입력 데이터를 서버로 전송하는 방식
+        	  (1) get: 서버로 전송하는 데이터를 URL 주소의 질의 문자열(query string)에 포함시켜서 전송하는 방식.
+        	      method 속성값을 지정하지 않으면 기본 전송 방식은 get 방식.
+        	      서버로 보내는 데이터의 크기 제한이 있음. 보안에 취약.
+        	  (2) post: 서버로 전송하는 데이터들을 HTTP 패킷에 포함시켜서 전송하는 방식.
+        	      사용자 입력 데이터들이 URL에 노출되지 않음. 전송 데이터 크기 제한이 없음.
+        -->
+        
+        <h2>GET 방식 전송</h2>
+        <form action="https://search.daum.net/search" method="get">
+        	<input type="text" name="q" />
+        	<input type="submit" value="검색" />
+        </form>
+        
+        <h2>POST 방식 전송</h2>
+        <form action="result.html" method="post">
+        	<input type="text" placeholder="아이디" name="userid" />
+        	<input type="password" placeholder="비밀번호" name="pwd" />
+        	<input type="submit" value="로그인" />
+        </form>
+        
+    </body>
+</html>
