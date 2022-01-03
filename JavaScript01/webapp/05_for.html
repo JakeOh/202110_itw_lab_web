@@ -32,6 +32,7 @@
         
         <h1>while 구문 연습</h1>
         <button onclick="makeHeadings2()">Heading 만들기 2</button>
+        <button onclick="makeHeadings3()">Heading 만들기 3</button>
         <div id="result2"></div>
         
         <script>
@@ -61,6 +62,15 @@
         		result2.innerHTML += `<h${i}> 제목 ${i} </h${i}>`;
         		i++;
         	}
+        }
+        
+        function makeHeadings3() {
+        	var result2 = document.getElementById('result2');
+        	var i = 6;
+        	do {
+        		result2.innerHTML += `<h${i}> 제목 ${i} </h${i}>`;
+        		i--;
+        	} while (i > 0);
         }
         </script>
     </body>
