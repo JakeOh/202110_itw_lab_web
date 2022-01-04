@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>JavaScript</title>
+        <style>
+        div {
+        	border: 1px solid gray;
+        	margin: 8px;
+        	padding: 8px;
+        }
+        </style>
+    </head>
+    <body>
+        <h1>HTML element 찾기</h1>
+        <div id="d1" class="c1">Division 1(id=d1, class=c1)</div>
+        <div id="d2" class="c1">Division 2(id=d2, class=c1)</div>
+        <div id="d3" class="c2">Division 3(id=d3, class=c2)</div>
+        <div id="d4" class="c2">Division 4(id=d4, class=c2)</div>
+        
+        <button id="btn_id">id로 찾기</button>
+        <button id="btn_class">class 이름으로 찾기</button>
+        <button id="btn_tag">tag 이름으로 찾기</button>
+        
+        <script>
+        /* HTML 문서(document)에서 HTML 요소(element)들을 찾는 방법:
+        	(1) id로 찾기: document.getElementById('id')
+        	만약 같은 아이디를 갖는 요소가 여러개 있다면, 문서에서 가장 먼저 찾는 요소 하나만 리턴.
+        	(2) class 이름으로 찾기: document.getElementsByClassName('class_name')
+        	(3) tag 이름으로 찾기 document.getElementsByTagName('tag_name')
+        	클래스 이름 또는 태그 이름으로 요소를 찾으면, "요소들의 배열"을 리턴.
+        */
+        
+        var btnId = document.getElementById('btn_id');
+        // btnId에 이벤트 리스너 등록 - 아이디가 d1인 요소의 바탕색을 변경.
+        btnId.addEventListener('click', function () {
+        	var d1 = document.getElementById('d1'); // id가 d1인 요소를 찾음
+        	d1.style.backgroundColor = 'lavender'; // 바탕색 변경
+        });
+        
+        // btn_class 아이디를 버튼을 찾고
+        var btnClass = document.getElementById('btn_class');
+        // 버튼에 이벤트 리스너를 등록 - 클래스 이름이 c2인 요소들의 바탕색을 변경
+        btnClass.addEventListener('click', function () {
+        	var divisions = document.getElementsByClassName('c2');
+        	//console.log(divisions);
+        	for (var i = 0; i < divisions.length; i++) {
+        		divisions[i].style.backgroundColor = 'lightgreen';
+        	}
+        });
+        
+        var btnTag = document.getElementById('btn_tag');
+        btnTag.addEventListener('click', function () {
+        	var divisions = document.getElementsByTagName('div');
+        	for (var i = 0; i < divisions.length; i++) {
+        		divisions[i].style.backgroundColor = 'lightpink';
+        	}
+        });
+        
+        </script>
+        
+    </body>
+</html>
