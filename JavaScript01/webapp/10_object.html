@@ -58,6 +58,46 @@
         };
         out.innerHTML += ssam + '<br>'; // ssam.toString() 호출
         
+        out.innerHTML += '<br>';
+        
+        // 객체(object) = 데이터 + 기능(메서드)
+        var contact = {
+        	// 데이터
+        	name: '홍길동',
+        	phone: '010-1234-5678',
+        	email: 'gildong.hong@itwill.co.kr',
+        	// 기능(메서드)
+        	toString: function () {
+        		return `[이름:${this.name}, 전화번호:${this.phone}, 이메일:${this.email}]`;
+        	},
+        };
+        out.innerHTML += contact + '<br>'; // contact.toString() 메서드가 자동으로 호출됨.
+        
+        out.innerHTML += '<br>';
+        
+        // 생성자 함수(constructor function)를 사용한 객체 생성
+        // 생성자 함수 정의
+        function Contact(name, phone, email) {
+        	// 객체 프로퍼티 초기화
+        	this.name = name;
+        	this.phone = phone;
+        	this.email = email;
+        	
+        	// 객체 메서드 정의
+        	this.toString = function () {
+        		return `[name:${this.name}, phone:${this.phone}, email:${this.email}]`;
+        	};
+        }
+        
+        // 생성자 함수를 호출해서 객체 생성하고 변수에 할당(저장)
+        var contact2 = new Contact('jake', '010-0000-0000', 'jake@itwill.co.kr');
+        out.innerHTML += contact2 + '<br>';
+        
+        var contact3 = new Contact('김길동');
+        out.innerHTML += contact3 + '<br>';
+        
+        var contact4 = new Contact('이길동', '1234', 'lee@test.com', 100, 200);
+        out.innerHTML += contact4 + '<br>';
         </script>
     </body>
 </html>
