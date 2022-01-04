@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>JavaScript Function</title>
+    </head>
+    <body>
+        <h1>JavaScript 함수 특징</h1>
+        <div id="output"></div>
+        
+        <script>
+        var out = document.getElementById('output');
+        
+        // 함수 선언(declaration), 정의(definition)
+        function sayHello(name) {
+        	out.innerHTML += `Hello, <strong>${name}</strong>! <br>`;
+        }
+        
+        // 함수 호출(invokation)
+        sayHello('오쌤');
+        
+        // JavaScript의 함수는 객체(Object)!
+        // JavaScript는 함수 객체를 변수에 저장할 수 있음.
+        var myFunction = sayHello; // sayHello 함수 객체를 변수 myFunction에 할당(저장).
+        out.innerHTML += 'myFunction = ' + myFunction + '<br>';
+        
+        // 변수 myFunction은 함수 객체이기 때문에 호출이 가능.
+        myFunction('홍길동');
+        
+        var result = sayHello('ITWILL'); // 함수 sayHello의 호출 결과(리턴 값)을 변수 result에 할당(저장).
+        out.innerHTML += 'result = ' + result + '<br>';
+        
+        out.innerHTML += '<br>';
+        
+        // 익명 함수
+        
+        </script>
+    </body>
+</html>
