@@ -21,6 +21,9 @@
         <button id="btn_id">id로 찾기</button>
         <button id="btn_class">class 이름으로 찾기</button>
         <button id="btn_tag">tag 이름으로 찾기</button>
+        <br>
+        <button id="btn_sel">querySelector</button>
+        <button id="btn_sel_all">querySelectorAll</button>
         
         <script>
         /* HTML 문서(document)에서 HTML 요소(element)들을 찾는 방법:
@@ -57,6 +60,42 @@
         	}
         });
         
+        /*
+        CSS selector(선택자):
+        	1. 태그 이름: h1, div, span, ...
+        	2. 클래스 이름: .class_name
+        	3. 아이디: #id
+        	4. 태그, 클래스 이름, 아이디 함께 혼합:  div.class_name#id
+        	5. 여러 요소들을 함께 찾는 방법: selector1, selector2, ...
+        	   (예) table, th, td
+        	6. child, descendent 요소: parent > child, ancestor descendent
+        	   (예) ul > li
+        	   (예) div span
+        	7. pseudo selector(가상 선택자): selector:nth-child(), selector:hover, ...
+        document.querySelector('CSS selector')
+          - CSS 선택자(selector)로 찾을 수 있는 첫번째 요소 하나를 리턴.
+        document.querySelectorAll('CSS selector')
+          - CSS 선택자로 찾을 수 있는 모든 요소들의 배열을 리턴.
+        */
+        
+        var btnSel = document.querySelector('#btn_sel'); // document.getElementById('btn_sel');
+        btnSel.addEventListener('click', function () {
+        	var c1 = document.querySelector('.c1');
+        	// querySelector는 HTML element 1개만 리턴.
+        	c1.style.backgroundColor = 'dodgerblue';
+        	c1.style.color = 'white';
+        });
+        
+        var btnSelAll = document.querySelector('button#btn_sel_all');
+        btnSelAll.addEventListener('click', function () {
+        	var c2 = document.querySelectorAll('.c2');
+        	// querySelectorAll은 HTML element들의 배열 객체를 리턴.
+        	for (var i = 0; i < c2.length; i++) {
+        		c2[i].style.backgroundColor = 'dodgerblue';
+        		c2[i].style.color = 'white';
+        		c2[i].style.fontWeight = 'bold';
+        	}
+        });
         </script>
         
     </body>
