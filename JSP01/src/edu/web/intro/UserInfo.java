@@ -42,7 +42,7 @@ public class UserInfo extends HttpServlet {
 			.append("<body>")
 			.append("<h1> User Info 입력 페이지 </h1>")
 			.append("<form action='userinfo' method='post'>")
-			.append("<input type='text' name='userName' placeholder='이름 입력' autofocus />")
+			.append("<input type='text' name='userName' placeholder='이름 입력' autofocus required />")
 			.append("<input type='submit' value='전송' />")
 			.append("</form>")
 			.append("</body>")
@@ -56,6 +56,27 @@ public class UserInfo extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
 		System.out.println("userInfo.doPost() 메서드 호출");
+		
+		// 클라이언트(브라우저)가 보낸 데이터(userName)를 읽음.
+		request.setCharacterEncoding("UTF-8");  // 클라이언트가 보내는 문자열 데이터의 인코딩 방식을 지정.
+		String userName = request.getParameter("userName");
+		System.out.println("userName: " + userName);
+		
+		// 응답(response)를 만듦.
+		response.setContentType("text/html; charset=UTF-8");
+		PrintWriter writer = response.getWriter();
+		writer.append("<!doctype html>")
+			.append("<html>")
+			.append("<head>")
+			.append("<title> JSP 1 </title>")
+			.append("</head>")
+			.append("<body>")
+			.append("<h1> User Info 결과 페이지 </h1>")
+			.append("<h2>")
+			.append(userName + "님, 안녕하세요...!!!")
+			.append("</h2>")
+			.append("</body>")
+			.append("</html>");
 	}
 
 }
