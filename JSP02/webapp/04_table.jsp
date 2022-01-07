@@ -25,7 +25,7 @@
         ArrayList에 더미 데이터를 저장.
         HTML table 작성
         --%>
-        
+
         <%
         ArrayList<Board> list = new ArrayList<>();
         for (int i = 1; i <= 10; i++) {
