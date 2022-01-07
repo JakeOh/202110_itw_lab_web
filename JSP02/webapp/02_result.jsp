@@ -15,7 +15,22 @@
         String userName = request.getParameter("userName"); // form에서 userName으로 전달한 파라미터 값
         %>
         
-        <h2>사용자 이름: <%= userName %></h2>
+        <hr>
+        <h1>out 객체 직접 사용</h1>
+        <% 
+        if (userName.equals("admin")) {
+        	out.print("<h2 style='background-color: dodgerblue;'>관리자 페이지</h2>");
+        } else {
+        	out.print("<h2 style='background-color: lightgray;'>사용자 이름: " + userName + "</h2>");
+        }
+        %>
         
+        <hr>
+        <h1>scriptlet과 expression 사용</h1>
+        <% if (userName.equals("admin")) { %>
+        <h2 style="background-color: dodgerblue;">관리자 페이지</h2>
+        <% } else { %>
+        <h2 style="background-color: lightgray;">사용자 이름: <%= userName %></h2>
+        <% } %>
     </body>
 </html>
