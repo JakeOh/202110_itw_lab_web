@@ -12,7 +12,7 @@
         <form action="02_number_result.jsp" method="get">
         	<input type="number" name="number1" />
         	<br>       
-        	<input type="number" name="number2" />
+        	<input type="number" name="number2"  />
         	<br>
         	<input type="submit" value="계산">
         </form>

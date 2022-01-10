@@ -32,6 +32,21 @@
         <br>
         
         <h2>EL 이용</h2>
+        <%-- 
+        EL에서 요청 파라미터 값을 찾는 방법:
+          * ${ param.name }
+          * ${ param['name'] }
+        --%>
+        ${ param.number1 } + ${ param.number2 } = ${ param.number1 + param.number2 }
+        <br>
+        ${ param['number1'] } - ${ param['number2'] } = ${ param['number1'] - param['number2'] }
+        <br>
+        ${ param.number1 } x ${ param.number2 } = ${ param.number1 * param.number2 }
+        <br>
+        ${ param.number1 } / ${ param.number2 } = ${ param.number1 / param.number2 }
+        <br>
+        
+        <%-- scriptlet에서 선언한 변수(지역 변수)는 EL에서 사용할 수 없다. --%>
         
     </body>
 </html>
