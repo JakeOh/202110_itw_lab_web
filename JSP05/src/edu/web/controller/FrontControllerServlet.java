@@ -11,6 +11,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import edu.web.controller.board.BoardMainController;
+
+
 /**
  * Servlet implementation class FrontControllerServlet
  */
@@ -42,7 +45,11 @@ public class FrontControllerServlet extends HttpServlet {
 	public void init(ServletConfig config) throws ServletException {
 		// 요청 주소와 요청 주소를 처리할 Controller 클래스의 객체를 매핑시켜서 등록.
 		commands = new HashMap<String, Action>();
+		
 		commands.put("/", new MainController());
+		commands.put("/board/main", new BoardMainController());
+		
+
 	}
 
 	/**
@@ -75,12 +82,12 @@ public class FrontControllerServlet extends HttpServlet {
 		// 위임(delegation) 패턴 사용: 요청 주소를 처리하기 위한 Controller 객체 찾음.
 		Action controller = commands.get(path);
 		// Controller가 request를 처리한 후에 View를 만들기 위한 JSP 파일 경로를 리턴받음.
-		String view = controller.execute(request, response);
+		String view = controller.execute(request, response); // 위임(delegation)
 		System.out.println("view: " + view);
 		
 		// TODO: forward vs redirect 선택
 		
-		// 요청을 이동(forward)
+		// 요청을 View 페이지로 이동(forward)
 		request.getRequestDispatcher(view).forward(request, response);
 	}
 
