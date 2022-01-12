@@ -28,5 +28,6 @@
         <br>
         <fmt:formatDate value="${now}" type="both" dateStyle="short" timeStyle="short"/>
         <br>
+        
     </body>
 </html>
