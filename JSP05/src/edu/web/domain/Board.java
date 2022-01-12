@@ -32,8 +32,8 @@ public class Board {
 	// 생성자(constructors)
 	public Board() {}
 
-	public Board(int bno, String title, String content, String userId, Date regDate, int viewCount, int replyCount,
-			String attachment) {
+	public Board(int bno, String title, String content, String userId, 
+			Date regDate, int viewCount, int replyCount, String attachment) {
 		this.bno = bno;
 		this.title = title;
 		this.content = content;
