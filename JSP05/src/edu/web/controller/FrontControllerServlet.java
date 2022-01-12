@@ -15,6 +15,10 @@ import javax.servlet.http.HttpServletResponse;
 		name = "frontControllerServlet", 
 		urlPatterns = { "", "/board/*", "/user/*" }
 		)
+// @WebServlet 어노테이션의 urlPatterns 설정값: 
+// - Servlet 클래스가 처리할 URL 주소들의 배열(String[]).
+// - URL 주소에서 Context Path 아래의 주소들을 설정.
+// (예) URL 주소가 "http://localhost:8181/JSP05/board/main" 라면 매핑 패턴은 "/board/main".
 public class FrontControllerServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     
@@ -35,13 +39,11 @@ public class FrontControllerServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#service(HttpServletRequest request, HttpServletResponse response)
 	 */
+	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
 		// 클라이언트에서 요청이 올 때마다 요청을 처리하고 응답을 보내기 위해서 WAS가 호출하는 메서드.
 		System.out.println("frontControllerServlet.service() 메서드 호출");
-		
-		// 요청 파라미터(request parameter)에 포함되어 있는 한글을 처리하기 위해서
-		request.setCharacterEncoding("UTF-8");
 		
 		// request 객체가 가지고 있는 정보들
 		// URL: 프로토콜(protocol) + 서버 주소(이름) + 포트번호 + URI(Context Path + 하위 주소 + Query String)
@@ -54,8 +56,11 @@ public class FrontControllerServlet extends HttpServlet {
 		String contextPath = request.getContextPath();
 		System.out.println("Context Path: " + contextPath);
 		
+		// 요청 파라미터(request parameter)에 포함되어 있는 한글을 처리하기 위해서
+		request.setCharacterEncoding("UTF-8");
+				
 		// 요청을 이동(forward, redirect)
-		request.getRequestDispatcher("index.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response);
 	}
 
 }
