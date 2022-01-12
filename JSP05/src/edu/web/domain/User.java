@@ -10,13 +10,13 @@ public class User {
 		public static final String COL_POINTS = "POINTS";  // 글/댓글 작성했을 때 지급하는 포인트 정보
 	}
 	
-	// 멤버 변수, 필드, 프로퍼티
+	// 멤버 변수, 필드(field), 프로퍼티(property)
 	private String userid;
 	private String pwd;
 	private String email;
 	private int points;
 	
-	// 생성자
+	// 생성자(constructor)
 	public User() {}
 
 	public User(String userid, String pwd, String email, int points) {
