@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import edu.web.controller.board.BoardMainController;
+import edu.web.controller.user.UserMainController;
 
 
 /**
@@ -49,7 +50,7 @@ public class FrontControllerServlet extends HttpServlet {
 		commands.put("/", new MainController());
 		commands.put("/board/main", new BoardMainController());
 		
-
+		commands.put("/user/main", new UserMainController());
 	}
 
 	/**
