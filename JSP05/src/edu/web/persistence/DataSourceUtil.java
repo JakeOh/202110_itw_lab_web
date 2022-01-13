@@ -11,7 +11,7 @@ import javax.naming.NamingException;
 import javax.sql.DataSource;
 
 // 인스턴스를 생성하지 않고, 모든 메서드를 static으로 작성한 유틸리티 클래스.
-// Connection Pool(DataSource)에서 Connection 객체를 가져옴.
+// Connection Pool(DataSource) 객체를 찾음.
 // Connection Pool(DataSource)에 Connection 객체를 반환(리소스 해제).
 public class DataSourceUtil {
 
@@ -19,6 +19,8 @@ public class DataSourceUtil {
 	private DataSourceUtil() {}
 	
 	public static DataSource getDataSource() {
+		System.out.println("DataSourceUtil.getDataSource() 메서드 호출");
+		
 		Context initContext;
 		Context envContext;
 		DataSource ds = null;
@@ -31,6 +33,7 @@ public class DataSourceUtil {
 			
 			// 환경 설정 정보에 정의된 리소스(jdbc/myoracle)를 찾음.
 			ds = (DataSource) envContext.lookup("jdbc/myoracle");
+			System.out.println("DataSource: " + ds);
 			
 		} catch (NamingException e) {
 			e.printStackTrace();
