@@ -16,6 +16,22 @@
             <header class="jumbotron text-center">
                 <h1>글 상세보기 페이지</h1>
             </header>
+            
+            ${board.bno}
+            <br>
+            ${board.title}
+            <br>
+            ${board.content}
+            <br>
+            ${board.userId}
+            <br>
+            ${board.regDate}
+            <br>
+            ${board.viewCount}
+            <br>
+            ${board.replyCount}
+            <br>
+            
         </div>
         
         <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>

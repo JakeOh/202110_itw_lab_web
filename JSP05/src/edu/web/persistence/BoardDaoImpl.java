@@ -141,7 +141,8 @@ public class BoardDaoImpl implements BoardDao {
 				int viewCount = rs.getInt(COL_VIEW_CNT);
 				int replyCount = rs.getInt(COL_REPLY_CNT);
 				
-				board = new Board(bno, title, content, userId, regDate, viewCount, replyCount, null); 
+				board = new Board(bno, title, content, userId, regDate, 
+						viewCount, replyCount, null); 
 			}
 			
 		} catch (SQLException e) {
@@ -155,6 +156,34 @@ public class BoardDaoImpl implements BoardDao {
 		}
 		
 		return board;
+	}
+
+	@Override
+	public int update(int bno) {
+		System.out.println("boardDaoImpl.update(bno=" + bno + ") 메서드 호출");
+		
+		int result = 0;
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		try {
+			conn = ds.getConnection();
+			pstmt = conn.prepareStatement(SQL_UPDATE_VIEW_COUNT);
+			System.out.println(SQL_UPDATE_VIEW_COUNT);
+			pstmt.setInt(1, bno);
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				DataSourceUtil.close(conn, pstmt);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return result;
 	}
 
 }

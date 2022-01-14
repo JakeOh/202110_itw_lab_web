@@ -45,4 +45,16 @@ public interface BoardDao {
 	 */
 	Board read(int bno);
 	
+	// 글 조회수 업데이트: update BOARDS set VIEW_CNT = VIEW_CNT + 1 where BNO = ?;
+	String SQL_UPDATE_VIEW_COUNT = String.format(
+			"update %s set %s = %s + 1 where %s = ?", 
+			TABLE_BOARD, COL_VIEW_CNT, COL_VIEW_CNT, COL_BNO);
+	/**
+	 * 글 번호(bno)를 전달받아서 해당 글의 조회수(view_cnt)를 1 증가.
+	 * 
+	 * @param bno 조회수를 증가시킬 글 번호(primary key).
+	 * @return 조회수 증가가 성공하면 1, 실패하면 0.
+	 */
+	int update(int bno);
+	
 }

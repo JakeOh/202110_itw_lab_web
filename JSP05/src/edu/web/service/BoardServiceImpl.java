@@ -51,4 +51,16 @@ public class BoardServiceImpl implements BoardService {
 		return result;
 	}
 
+	@Override
+	public Board select(int bno) {
+		System.out.println("boardServiceImpl.select(bno=" + bno + ") 메서드 호출");
+		
+		Board board = boardDao.read(bno); // 글 번호로 게시글 검색
+		if (board != null) { // 검색 결과가 있을 때
+			int result = boardDao.update(bno); // 글 번호의 조회수를 1 증가
+		}
+		
+		return board;
+	}
+
 }
