@@ -30,4 +30,10 @@ public class BoardServiceImpl implements BoardService {
 		return boardDao.read();
 	}
 
+	@Override
+	public int registerNewBoard(Board board) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 }
