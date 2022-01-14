@@ -31,4 +31,18 @@ public interface BoardDao {
 	 * @return insert 성공하면 1, 실패하면 0.
 	 */
 	int create(Board board);
+	
+	// 글 상세보기: select * from BOARDS where BNO = ?;
+	String SQL_SELECT_BY_BNO = String.format(
+			"select * from %s where %s = ?", 
+			TABLE_BOARD, COL_BNO);
+	/**
+	 * 글 번호(bno)를 argument로 전달받아서 DB boards 테이블에서 게시글 1개를 검색하고, 
+	 * 그 결과를 리턴.
+	 * 
+	 * @param bno 글 번호(양의 정수). 테이블의 primary key(고유키).
+	 * @return 해당 글 번호의 게시글 전체 정보를 가지고 있는 Board 객체.
+	 */
+	Board read(int bno);
+	
 }
