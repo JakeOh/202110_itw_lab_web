@@ -5,16 +5,20 @@ import java.util.List;
 import edu.web.domain.Board;
 import edu.web.persistence.BoardDao;
 import edu.web.persistence.BoardDaoImpl;
+import edu.web.persistence.UserDao;
+import edu.web.persistence.UserDaoImpl;
 
 public class BoardServiceImpl implements BoardService {
 
 	private BoardDao boardDao;
+	private UserDao userDao;
 	
 	// Singleton 패턴 적용
 	private static BoardServiceImpl instance = null;
 	
 	private BoardServiceImpl() {
 		boardDao = BoardDaoImpl.getInstance();
+		userDao = UserDaoImpl.getInstance();
 	}
 	
 	public static BoardServiceImpl getInstance() {
@@ -34,11 +38,17 @@ public class BoardServiceImpl implements BoardService {
 	public int registerNewBoard(Board board) {
 		System.out.println("boardServiceImpl.registerNewBoard(board) 메서드 호출");
 		
-		// TODO
-		// boardDao의 메서드를 사용해서 boards 테이블에 새 글을 입력(insert).
-		// userDao의 메서드를 사용해서 users 테이블의 해당 userId의 points를 10 증가.
+		int result = 0;
 		
-		return 0;
+		// (1) boardDao의 메서드를 사용해서 boards 테이블에 새 글을 입력(insert).
+		result = boardDao.create(board);
+		// (2) userDao의 메서드를 사용해서 users 테이블의 해당 userId의 points를 10 증가.
+		if (result == 1) { // boards 테이블에 insert 성공하면
+			result = userDao.update(10, board.getUserId());
+			// FIXME: 만약 insert 성공 후 update 실패하면 insert를 rollback.
+		}
+		
+		return result;
 	}
 
 }
