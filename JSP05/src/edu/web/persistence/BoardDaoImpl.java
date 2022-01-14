@@ -105,7 +105,12 @@ public class BoardDaoImpl implements BoardDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			
+			try {
+				// 사용했던 리소스 반환 - Connection 객체를 Connection Pool로 반환.
+				DataSourceUtil.close(conn, pstmt);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
 		
 		return result;
