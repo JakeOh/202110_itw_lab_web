@@ -31,7 +31,7 @@
                         <a class="nav-link" href="./detail?bno=${board.bno}">이전 페이지</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" >삭제</a> <!-- TODO -->
+                        <a class="nav-link" href="./delete?bno=${board.bno}">삭제</a>
                     </li>
                 </ul>
             </nav>

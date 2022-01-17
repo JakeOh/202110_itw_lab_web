@@ -70,5 +70,18 @@ public interface BoardDao {
 	 * @return 업데이트 성공하면 1, 실패하면 0.
 	 */
 	int update(Board board);
+
+	// bno로 삭제: delete from BOARDS where BNO = ?;
+	String SQL_DELETE = String.format(
+			"delete from %s where %s = ?", 
+			TABLE_BOARD, COL_BNO);
+	
+	/**
+	 * 삭제할 bno를 전달받아서, boards 테이블에서 해당 글 번호의 게시글을 삭제.
+	 * 
+	 * @param bno 삭제할 글 번호(primary key).
+	 * @return 삭제 성공하면 1, 실패하면 0.
+	 */
+	int delete(int bno);
 	
 }

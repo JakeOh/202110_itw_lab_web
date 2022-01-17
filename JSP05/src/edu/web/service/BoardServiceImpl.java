@@ -70,4 +70,11 @@ public class BoardServiceImpl implements BoardService {
 		return boardDao.update(board);
 	}
 
+	@Override
+	public int delete(int bno) {
+		System.out.println("boardServiceImpl.delete(bno=" + bno + ") 메서드 호출");
+		
+		return boardDao.delete(bno);
+	}
+
 }

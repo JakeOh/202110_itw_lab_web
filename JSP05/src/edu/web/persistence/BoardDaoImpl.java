@@ -219,4 +219,34 @@ public class BoardDaoImpl implements BoardDao {
 		return result;
 	}
 
+	@Override
+	public int delete(int bno) {
+		System.out.println("boardDaoImpl.delete(bno=" + bno + ") 메서드 호출");
+		
+		int result = 0;
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		try {
+			conn = ds.getConnection(); // Connection Pool(DataSource)에서 Connection 객체 빌려옴.
+			
+			pstmt = conn.prepareStatement(SQL_DELETE); // SQL 문장 작성
+			System.out.println(SQL_DELETE);
+			pstmt.setInt(1, bno);
+			
+			result = pstmt.executeUpdate(); // SQL 문장 실행.
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				DataSourceUtil.close(conn, pstmt); // 사용했던 리소스를 반환.
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return result;
+	}
+
 }

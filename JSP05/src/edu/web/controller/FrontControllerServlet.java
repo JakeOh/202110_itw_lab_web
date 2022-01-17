@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import edu.web.controller.board.BoardDeleteController;
 import edu.web.controller.board.BoardDetailController;
 import edu.web.controller.board.BoardInsertController;
 import edu.web.controller.board.BoardMainController;
@@ -57,6 +58,7 @@ public class FrontControllerServlet extends HttpServlet {
 		commands.put("/board/insert", new BoardInsertController());
 		commands.put("/board/detail", new BoardDetailController());
 		commands.put("/board/update", new BoardUpdateController());
+		commands.put("/board/delete", new BoardDeleteController());
 		
 		commands.put("/user/main", new UserMainController());
 	}
