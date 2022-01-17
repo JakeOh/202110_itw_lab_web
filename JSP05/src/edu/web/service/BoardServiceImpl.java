@@ -77,4 +77,11 @@ public class BoardServiceImpl implements BoardService {
 		return boardDao.delete(bno);
 	}
 
+	@Override
+	public List<Board> select(int type, String keyword) {
+		System.out.println("boardServiceImpl.select(type=" + type + ", keyword=" + keyword + ") 메서드 호출");
+		
+		return boardDao.read(type, keyword);
+	}
+
 }

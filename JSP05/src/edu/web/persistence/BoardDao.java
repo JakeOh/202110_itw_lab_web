@@ -83,5 +83,38 @@ public interface BoardDao {
 	 * @return 삭제 성공하면 1, 실패하면 0.
 	 */
 	int delete(int bno);
+
+	// 제목 검색: select * from BOARDS where lower(TITLE) like ? order by BNO desc;
+	String SQL_SELECT_BY_TITLE = String.format(
+			"select * from %s where lower(%s) like ? order by %s desc", 
+			TABLE_BOARD, COL_TITLE, COL_BNO);
+	
+	// 내용 검색: select * from BOARDS where lower(CONTENT) like ? order by BNO desc;
+	String SQL_SELECT_BY_CONTENT = String.format(
+			"select * from %s where lower(%s) like ? order by %s desc", 
+			TABLE_BOARD, COL_CONTENT, COL_BNO);
+	
+	// 제목+내용 검색: select * from BOARDS where lower(TITLE) like ? or lower(CONTENT) like ? order by BNO desc;
+	String SQL_SELECT_BY_TITLE_OR_CONTENT = String.format(
+			"select * from %s where lower(%s) like ? or lower(%s) like ? order by %s desc", 
+			TABLE_BOARD, COL_TITLE, COL_CONTENT, COL_BNO);
+	
+	// 작성자 검색: select * from BOARDS where lower(USERID) like ? order by BNO desc;
+	String SQL_SELECT_BY_USERID = String.format(
+			"select * from %s where lower(%s) like ? order by %s desc", 
+			TABLE_BOARD, COL_USERID, COL_BNO);
+	
+	
+	/**
+	 * 검색 타입과 검색어를 전달받아서, boards 테이블에서의 검색 결과를 List<Board> 객체로 리턴.
+	 * 검색 타입(제목, 내용, 제목+내용, 작성자)에 따라서
+	 * SQL_SELECT_BY_TITLE, SQL_SELECT_BY_CONTENT, SQL_SELECT_BY_TITLE_OR_CONTENT, 또는
+	 * SQL_SELECT_BY_USERID 중에서 선택해서 실행.
+	 * 
+	 * @param type 검색 타입(1-제목, 2-내용, 3-제목+내용, 4-작성자).
+	 * @param keyword 검색어.
+	 * @return 검색 결과.
+	 */
+	List<Board> read(int type, String keyword);
 	
 }

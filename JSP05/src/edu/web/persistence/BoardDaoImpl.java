@@ -249,4 +249,18 @@ public class BoardDaoImpl implements BoardDao {
 		return result;
 	}
 
+	@Override
+	public List<Board> read(int type, String keyword) {
+		System.out.println("boardDaoImpl.read(type=" + type + ", keyword=" + keyword + ") 메서드 호출");
+		
+		List<Board> list = new ArrayList<Board>();
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		// TODO: 과제
+		
+		return list;
+	}
+
 }
