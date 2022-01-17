@@ -31,7 +31,7 @@
                         <a class="nav-link" href="./detail?bno=${board.bno}">이전 페이지</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="./delete?bno=${board.bno}">삭제</a>
+                        <a id="menuDelete" class="nav-link" href="./delete?bno=${board.bno}">삭제</a>
                     </li>
                 </ul>
             </nav>
@@ -65,5 +65,26 @@
         
         <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+        <script>
+        $(document).ready(function () {
+        	// 아이디 속성이 menuDelete인 HTML 요소를 클릭했을 때 실행할 이벤트 리스너를 등록.
+        	$('#menuDelete').click(function (event) {
+        		// <a> 태그의 클릭 이벤트 기본 동작(요청 보내기)을 하지 못하도록 막음.
+        		event.preventDefault();
+        		
+        		// 사용자에게 정말 삭제할 것인 지 확인
+        		var result = confirm('정말 삭제할까요?');
+        		// console.log(result); //-> 확인: true, 취소: false 리턴.
+        		
+        		if (result) { // 사용자가 "확인(yes)"을 클릭했을 때
+        			// 페이지를 "/board/delete?bno=..."로 이동 이동
+        			location = $(this).attr('href');
+        		    // $(this) -> $('#menuDelete') -> <a href="...">삭제</a>
+        		    // attr(s): 속성 s의 값을 읽음.
+        		}
+        		
+        	});
+        });
+        </script>
     </body>
 </html>

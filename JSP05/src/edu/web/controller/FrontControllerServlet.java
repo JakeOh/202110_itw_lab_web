@@ -15,6 +15,7 @@ import edu.web.controller.board.BoardDeleteController;
 import edu.web.controller.board.BoardDetailController;
 import edu.web.controller.board.BoardInsertController;
 import edu.web.controller.board.BoardMainController;
+import edu.web.controller.board.BoardSearchController;
 import edu.web.controller.board.BoardUpdateController;
 import edu.web.controller.user.UserMainController;
 
@@ -59,6 +60,7 @@ public class FrontControllerServlet extends HttpServlet {
 		commands.put("/board/detail", new BoardDetailController());
 		commands.put("/board/update", new BoardUpdateController());
 		commands.put("/board/delete", new BoardDeleteController());
+		commands.put("/board/search", new BoardSearchController());
 		
 		commands.put("/user/main", new UserMainController());
 	}
