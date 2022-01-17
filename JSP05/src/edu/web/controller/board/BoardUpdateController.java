@@ -40,8 +40,18 @@ public class BoardUpdateController implements Action {
 	}
 	
 	private String doPost(HttpServletRequest request, HttpServletResponse response) {
-		// TODO 수정된 게시글의 내용을 DB에 update -> 게시판 메인
-		return "";
+		// 수정된 게시글의 내용을 DB에 update -> 게시판 메인(or 상세보기 페이지) redirect
+		System.out.println("boardUpdateController.doPost() 메서드 호출");
+		
+		// POST 방식의 요청 파라미터에 포함된 글 번호, 제목, 내용을 읽음.
+		int bno = Integer.parseInt(request.getParameter("bno"));
+		String title = request.getParameter("title");
+		String content = request.getParameter("content");
+		Board board = new Board(bno, title, content, null, null, 0, 0, null);
+		
+		int result = boardService.update(board);
+		
+		return "redirect:main";
 	}
 
 }

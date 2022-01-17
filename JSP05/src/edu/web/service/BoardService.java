@@ -34,4 +34,12 @@ public interface BoardService {
 	 */
 	Board select(int bno);
 
+	/**
+	 * 게시글의 내용을 업데이트하는 서비스.
+	 * 
+	 * @param board 업데이트할 글 번호, 제목, 내용을 가지고 있는 Board 객체.
+	 * @return 업데이트 성공하면 1, 실패하면 0
+	 */
+	int update(Board board);
+	
 }

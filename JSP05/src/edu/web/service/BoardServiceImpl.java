@@ -63,4 +63,11 @@ public class BoardServiceImpl implements BoardService {
 		return board;
 	}
 
+	@Override
+	public int update(Board board) {
+		System.out.println("boardServiceImpl.update(board) 메서드 호출");
+		
+		return boardDao.update(board);
+	}
+
 }
