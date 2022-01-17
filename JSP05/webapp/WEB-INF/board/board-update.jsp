@@ -16,7 +16,7 @@
     <body>
         <div class="container-fluid">
             <header class="jumbotron text-center">
-                <h1>글 상세 보기 페이지</h1>
+                <h1>글 수정 페이지</h1>
             </header>
             
             <nav> <!-- navigation menu -->

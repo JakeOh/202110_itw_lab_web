@@ -47,6 +47,7 @@ public class BoardDaoImpl implements BoardDao {
 		try {
 			conn = ds.getConnection();  // Connection Pool에 있는 Connection 객체를 빌려옴.
 			System.out.println(SQL_SELECT_ALL);
+			
 			pstmt = conn.prepareStatement(SQL_SELECT_ALL);  // SQL 문장 작성
 			rs = pstmt.executeQuery();  // DB로 SQL 문장을 전송, 실행, 결과 반환.
 			while (rs.next()) { // ResultSet에 레코드(행)가 있으면
