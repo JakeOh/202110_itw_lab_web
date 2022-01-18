@@ -66,7 +66,23 @@
         		xhr.onload = function () {
         			// console.log('xhr.status: ' + xhr.status);
         			if (xhr.status == 200) { // Ajax 요청에 대한 응답이 성공일 경우에
-        				$('#target2').text(xhr.responseText); // 응답 문자열을 화면에 표시.
+        				// $('#target2').text(xhr.responseText); // 응답 문자열을 화면에 표시.
+        				
+        				// 서버가 보낸 JSON(JavaScript Object Notation) 문자열을 JavaScript 객체로 변환.
+        				var jsonObj = JSON.parse(xhr.responseText);
+        				// console.log(jsonObj);  //-> JavaScript 객체
+        				// console.log(jsonObj.cities); // jsonObj['cities']  //-> JavaScript 배열
+        				// console.log(jsonObj.cities[0]);
+        				// console.log(jsonObj.cities[0].img);
+        				
+        				var content = '';
+        				for (var i = 0; i < jsonObj.cities.length; i++) {
+        					var name = jsonObj.cities[i].name;
+        					var imgSrc = jsonObj.cities[i].img;
+        					// <img alt="..." src ="..." />
+        					content += '<img alt="' + name + '" src="' + imgSrc + '" />'
+        				}
+        				$('#target2').html(content);
         			}
         		};
         		
