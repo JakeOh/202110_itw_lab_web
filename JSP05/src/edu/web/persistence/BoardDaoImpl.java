@@ -258,7 +258,60 @@ public class BoardDaoImpl implements BoardDao {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		// TODO: 과제
+		try {
+			conn = ds.getConnection();
+			
+			String searchKeyword = "%" + keyword.toLowerCase() + "%";
+			System.out.println("searchKeyword:" + searchKeyword);
+			
+			switch (type) {
+			case 1:
+				System.out.println(SQL_SELECT_BY_TITLE);
+				pstmt = conn.prepareStatement(SQL_SELECT_BY_TITLE);
+				pstmt.setString(1, searchKeyword);
+				break;
+			case 2:
+				System.out.println(SQL_SELECT_BY_CONTENT);
+				pstmt = conn.prepareStatement(SQL_SELECT_BY_CONTENT);
+				pstmt.setString(1, searchKeyword);
+				break;
+			case 3:
+				System.out.println(SQL_SELECT_BY_TITLE_OR_CONTENT);
+				pstmt = conn.prepareStatement(SQL_SELECT_BY_TITLE_OR_CONTENT);
+				pstmt.setString(1, searchKeyword);
+				pstmt.setString(2, searchKeyword);
+				break;
+			case 4:
+				System.out.println(SQL_SELECT_BY_USERID);
+				pstmt = conn.prepareStatement(SQL_SELECT_BY_USERID);
+				pstmt.setString(1, searchKeyword);
+				break;
+			}
+			
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				int bno = rs.getInt(COL_BNO);
+				String title = rs.getString(COL_TITLE);
+				String content = rs.getString(COL_CONTENT);
+				String userId = rs.getString(COL_USERID);
+				Date regDate = rs.getDate(COL_REG_DATE);
+				int viewCount = rs.getInt(COL_VIEW_CNT);
+				int replyCount = rs.getInt(COL_REPLY_CNT);
+				
+				Board b = new Board(bno, title, content, userId, regDate, viewCount, replyCount, null);
+				list.add(b);
+			}
+			System.out.println("# of search: " + list.size());
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				DataSourceUtil.close(conn, pstmt, rs);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
 		
 		return list;
 	}
