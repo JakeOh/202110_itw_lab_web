@@ -8,7 +8,7 @@
         <title>Ajax</title>
         
         <style>
-        #target1 {
+        #target1, #target2 {
             border: 1px solid black;
         }
         </style>
@@ -23,6 +23,10 @@
         
         <button id="btn1">HTML 가져오기</button>
         <div id="target1">Ajax 요청으로 HTML을 가져옴.</div>
+        
+        <hr>
+        <button id="btn2">JSON 가져오기</button>
+        <div id="target2">Ajax 요청으로 JSON을 가져옴.</div>
         
         <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
@@ -52,6 +56,27 @@
         		// 4. Ajax 요청을 서버로 보내기.
         		xhr.send();
         	});
+        	
+        	// 아이디가 "btn2"인 HTML 요소를 찾아서, click 이벤트 리스너(콜백 함수)를 등록.
+        	$('#btn2').click(function () {
+        		// 1. XMLHttpRequest 객체 생성
+        		var xhr = new XMLHttpRequest();
+        		
+        		// 2. Ajax 요청에 대한 응답이 도착했을 때 실행될 콜백 함수를 등록.
+        		xhr.onload = function () {
+        			// console.log('xhr.status: ' + xhr.status);
+        			if (xhr.status == 200) { // Ajax 요청에 대한 응답이 성공일 경우에
+        				$('#target2').text(xhr.responseText); // 응답 문자열을 화면에 표시.
+        			}
+        		};
+        		
+        		// 3. Ajax 요청 준비
+        		xhr.open('GET', 'data/city.json')  // async 파라미터의 기본값은 true이기 때문에 생략 가능.
+        		
+        		// 4. Ajax 요청을 서버로 보냄.
+        		xhr.send();
+        	});
+        	
         });
         </script>
         
