@@ -42,18 +42,33 @@
                 </div>
                 <input type="submit" value="가입하기" />
             </form>
+            
+            <hr>
+            <button id="btnPost">jQuery.post() 함수를 사용한 ID 중복 체크</button>
+            <div class="invalid">이미 사용중이거나 탈퇴한 아이디입니다.</div>
+            <div class="valid">멋진 아이디네요!</div>
+            
+            <hr>
+            <button id="btnAjax">jQuery.ajax() 함수를 사용한 ID 중복 체크</button>
+            <div class="invalid">이미 사용중이거나 탈퇴한 아이디입니다.</div>
+            <div class="valid">멋진 아이디네요!</div>
+            
         </div>
         
         <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
         <script>
         $(document).ready(function () {
+        	
+        	// input 요소에 변화가 생길 때 처리하는 이벤트 리스너를 등록 
         	$('#userId').change(function () {
         		console.log($(this).val());
+        		
         		// XMLHttpRequest 생성 -> onload 콜백 등록 -> open(요청방식, 요청 주소) -> send()
         		var xhr = new XMLHttpRequest();
         		xhr.onload = function () {
         			if (xhr.status == 200) { // Ajax 요청에 대한 응답이 성공인 경우에
+        				// xhr.responseText: 서버가 보내준 응답(response) 문자열
         				if (xhr.responseText == 'valid') { // 사용 가능 아이디
         					$('.valid').show();
         				    $('.invalid').hide();
@@ -69,8 +84,8 @@
         		
         		xhr.open('POST', 'checkid');
         		xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-        		var data = 'userId=' + $(this).val();
-        		xhr.send(data);
+        		var data = 'userId=' + $(this).val(); // 'param=value' 형식의 문자열
+        		xhr.send(data); // send 함수에 요청 파라미터를 argument로 전달.
         	});
         });
         </script>
