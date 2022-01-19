@@ -117,7 +117,7 @@
         			type: 'post', 
         			// POST 요청에 포함될 데이터(요청 파라미터)
         			data: {userId: $('#userId').val()}, 
-        			// HTTP 패킷 헤더(Content-Type) 설정
+        			// HTTP 패킷 헤더의 Content-Type 설정
         			contentType: 'application/x-www-form-urlencoded; charset=UTF-8', 
         			// 성공 콜백
         			success: function (response) {
@@ -130,6 +130,7 @@
         				}
         			} 
         		});
+        		
         	});
         	
         });
