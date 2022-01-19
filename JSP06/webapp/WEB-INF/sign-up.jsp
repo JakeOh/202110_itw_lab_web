@@ -61,8 +61,9 @@
         $(document).ready(function () {
         	
         	// input 요소에 변화가 생길 때 처리하는 이벤트 리스너를 등록 
+        	/*
         	$('#userId').change(function () {
-        		console.log($(this).val());
+        		console.log('on change: ' + $(this).val());
         		
         		// XMLHttpRequest 생성 -> onload 콜백 등록 -> open(요청방식, 요청 주소) -> send()
         		var xhr = new XMLHttpRequest();
@@ -87,6 +88,50 @@
         		var data = 'userId=' + $(this).val(); // 'param=value' 형식의 문자열
         		xhr.send(data); // send 함수에 요청 파라미터를 argument로 전달.
         	});
+        	*/
+        	
+        	// 아이디가 btnPost인 요소가 클릭됐을 때 실행할 이벤트 리스너 콜백을 등록.
+        	$('#btnPost').click(function () {
+        		// ID 중복 체크를 위한 Ajax POST 방식 요청을 보냄.
+        		// $.post(요청주소, 요청 파라미터 객체, 성공 콜백);
+        		$.post('checkid', {userId: $('#userId').val()}, function (resText) {
+        			if (resText == 'valid') {
+        				$('.valid').show();
+        				$('.invalid').hide();
+        			} else {
+        				$('.invalid').show();
+        				$('.valid').hide();
+        			}
+        		});
+        	});
+        	
+        	// btnAjax 버튼이 클릭됐을 때 실행할 이벤트 리스너 콜백 등록
+        	$('#btnAjax').click(function () {
+        		console.log('btnAjax on click: ' + $('#userId').val());
+        		
+        		// $.ajax(Ajax 요청에 필요한 정보들을 가지고 있는 객체)
+        		$.ajax({
+        			// Ajax 요청 URL
+        			url: 'checkid',
+        			// Ajax 요청 방식(method)
+        			type: 'post', 
+        			// POST 요청에 포함될 데이터(요청 파라미터)
+        			data: {userId: $('#userId').val()}, 
+        			// HTTP 패킷 헤더(Content-Type) 설정
+        			contentType: 'application/x-www-form-urlencoded; charset=UTF-8', 
+        			// 성공 콜백
+        			success: function (response) {
+        				if (response == 'valid') {
+        					$('.valid').show();
+        					$('.invalid').hide();
+        				} else {
+        					$('.invalid').show();
+        					$('.valid').hide();
+        				}
+        			} 
+        		});
+        	});
+        	
         });
         </script>
     </body>
