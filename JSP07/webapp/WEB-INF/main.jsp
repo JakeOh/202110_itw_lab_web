@@ -15,13 +15,13 @@
     <body>
         <h1>메인 페이지</h1>
         
-        <c:if test="${empty userId}"> <%-- userId 변수의 값이 빈 문자열("")이거나 또는 null인 경우 --%>
+        <c:if test="${empty signInUser}"> <%-- userId 변수의 값이 빈 문자열("")이거나 또는 null인 경우 --%>
             <%-- 로그인되어 있지 않은 경우 --%>
             <a href="signin">로그인</a>
         </c:if>
-        <c:if test="${not empty userId}"> <%-- userId 변수의 값이 null이 아니고, 빈 문자열도 아닌 경우 --%>
+        <c:if test="${not empty signInUser}"> <%-- userId 변수의 값이 null이 아니고, 빈 문자열도 아닌 경우 --%>
             <%-- 로그인되어 있는 경우 --%>
-            <div>${userId}님, 환영합니다!</div>
+            <div>${signInUser}님, 환영합니다!</div>
             <a href="signout">로그아웃</a>
         </c:if>
         
