@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @RequestMapping(value = "/board")
@@ -40,4 +41,27 @@ public class BoardController {
 		
 		return "board/insert-result"; // WEB-INF/views/board/insert-result.jsp
 	}
+	
+	@RequestMapping(value = "/insert2", method = RequestMethod.GET)
+	public void boardInsert2() {
+		logger.info("boardInsert2() 호출");
+	}
+	
+	@RequestMapping(value = "/insert2", method = RequestMethod.POST)
+	public String boardInsert2(
+			@RequestParam(value = "board-no") int bno, 
+			@RequestParam(value = "board-title") String title,
+			Model model) {
+		// controller 클래스 메서드의 파라미터에서 사용하는 @RequestParam 어노테이션:
+		// 요청 파라미터의 값을 Dispatcher Servlet이 분석해서, 파라미터에 전달할 때 사용.
+		// 주로 메서드 파라미터의 이름과 요청 파라미터 name 속성 값이 다른 경우에 사용.
+		
+		logger.info("boardInsert2(bno={}, title={})", bno, title);
+		
+		model.addAttribute("bno", bno);
+		model.addAttribute("title", title);
+		
+		return "board/insert-result";
+	}
+	
 }

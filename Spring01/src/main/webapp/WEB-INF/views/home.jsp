@@ -28,6 +28,9 @@
     <li>
         <a href="board/insert">새 글 작성</a>
     </li>
+    <li>
+        <a href="board/insert2">새 글 작성 2</a>
+    </li>
 </ul>
 
 </body>
