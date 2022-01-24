@@ -34,6 +34,15 @@
     <li>
         <a href="board/insert3">새 글 작성 3</a>
     </li>
+    <li>
+        <a href="board/insert4">새 글 작성 4</a>
+    </li>
+    <li>
+        <a href="forward-test">Forward 테스트</a>
+    </li>
+    <li>
+        <a href="redirect-test">Redirect 테스트</a>
+    </li>
 </ul>
 
 </body>
