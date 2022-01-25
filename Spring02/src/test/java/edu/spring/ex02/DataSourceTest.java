@@ -2,8 +2,11 @@ package edu.spring.ex02;
 
 import static org.junit.Assert.assertNotNull;
 
+import java.util.List;
+
 import javax.sql.DataSource;
 
+import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -13,6 +16,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
+
+import edu.spring.ex02.domain.Board;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(
@@ -29,11 +34,19 @@ public class DataSourceTest {
 	// -> 소스 코드의 재활용성이 높아짐. 소스 코드의 수정을 최소화.
 	@Autowired private DataSource ds;
 	@Autowired private SqlSessionFactory sessionFactory;
+	@Autowired private SqlSession sqlSession;
 	
 	@Test 
 	public void doTest() {
 		logger.info("ds: {}", ds); //-> ds != null: Java bean을 스프링 프레임워크에서 주입받음.
 		logger.info("sessionFactory: {}", sessionFactory);
+		logger.info("sqlSession: {}", sqlSession);
+		
+		List<Board> list = sqlSession.selectList("edu.spring.ex02.mapper.BoardMapper.selectAll");
+		for (Board b : list) {
+			logger.info(b.toString());
+		}
+		
 	}
 	
 }
