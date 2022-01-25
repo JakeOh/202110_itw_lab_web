@@ -2,6 +2,8 @@ package edu.spring.ex02;
 
 import static org.junit.Assert.assertNotNull;
 
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.List;
 
 import javax.sql.DataSource;
@@ -37,8 +39,15 @@ public class DataSourceTest {
 	@Autowired private SqlSession sqlSession;
 	
 	@Test 
-	public void doTest() {
+	public void doTest() throws SQLException {
 		logger.info("ds: {}", ds); //-> ds != null: Java bean을 스프링 프레임워크에서 주입받음.
+		
+		Connection conn = ds.getConnection();
+		logger.info("connection: {}", conn);
+		
+		conn.close();
+		logger.info("connection 해제");
+		
 		logger.info("sessionFactory: {}", sessionFactory);
 		logger.info("sqlSession: {}", sqlSession);
 		
