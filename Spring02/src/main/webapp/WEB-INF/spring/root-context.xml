@@ -4,7 +4,7 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
 	
 	<!-- Root Context: defines shared resources visible to all other web components -->
-	<!-- root-context.xml: 스프링 프레임워크에서 생성하고 관리하는 객체(bean)들을 설정 
+	<!-- root-context.xml: 스프링 프레임워크에서 생성하고 관리하는 자바 객체(bean)들을 설정 
         DataSource, SqlSession, Service 계층 bean, Persistence 계층 bean
     -->
     
@@ -16,6 +16,14 @@
         <property name="url" value="jdbc:oracle:thin:@localhost:1521:xe" />
         <property name="username" value="scott" />
         <property name="password" value="tiger" />
+    </bean>
+    
+    <!-- MyBatis 프레임워크에서 사용할 SqlSessionFactory 객체 설정 -->
+    <bean id="sqlSessionFactory"
+        class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="ds" />
+        <property name="configLocation" value="classpath:/mybatis-config.xml" />
+        <property name="mapperLocations" value="classpath:/mapper/*.xml" />
     </bean>
     
 </beans>
