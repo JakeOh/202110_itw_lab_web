@@ -22,7 +22,7 @@ import oracle.jdbc.OracleDriver;
 // root-context.xml, appServlet/servlet-context.xml
 @ContextConfiguration(
 		locations = { "file:src/main/webapp/WEB-INF/spring/**/*.xml" }
-		)
+)
 
 // 3. 배포 관리자(deployment descriptor, web.xml)의 환경 설정 정보 사용.
 @WebAppConfiguration
