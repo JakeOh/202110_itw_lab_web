@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -47,6 +48,25 @@ public class BoardController {
 		boardService.insert(board);
 		
 		return "redirect:/board/main";
+	}
+	
+	@RequestMapping(value = "/detail", method = RequestMethod.GET)
+	public void detail(int bno, Model model) {
+		log.info("detail(bno={}) GET 호출", bno);
+		
+		// 서비스 계층의 객체 (메서드)를 사용해서 해당 글 번호(bno)를 검색하고
+		// 검색된 내용을 View(JSP)에게 전달.
+		Board board = boardService.select(bno);
+		model.addAttribute("board", board);
+	}
+	
+	@RequestMapping(value = "/update", method = RequestMethod.GET)
+	public void update(int bno, Model model) {
+		log.info("update(bno={}) GET 호출", bno);
+		
+		Board board = boardService.select(bno);
+		model.addAttribute("board", board);
+		
 	}
 	
 }

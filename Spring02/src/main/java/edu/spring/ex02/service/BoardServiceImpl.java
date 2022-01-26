@@ -34,5 +34,12 @@ public class BoardServiceImpl implements BoardService {
 		
 		return result;
 	}
+
+	@Override
+	public Board select(int bno) {
+		log.info("select(bno={})", bno);
+		
+		return boardDao.read(bno);
+	}
 	
 }
