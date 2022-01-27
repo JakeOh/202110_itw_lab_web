@@ -13,6 +13,8 @@ public class UserDaoImpl implements UserDao {
 	
 	private static final Logger log = LoggerFactory.getLogger(UserDaoImpl.class);
 	
+	// mapper xml 파일을 사용할 때는 SqlSession 객체를 주입받음.
+	// 어노테이션 방식의 인터페이스를 사용할 때는,
 	// 스프링 컨테이너가 생성하고 관리하는 mapper 객체를 주입(injectcion)받음.
 	@Autowired private UserMapper mapper;
 	

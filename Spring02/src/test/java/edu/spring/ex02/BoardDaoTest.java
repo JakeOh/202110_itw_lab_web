@@ -30,6 +30,7 @@ public class BoardDaoTest {
 	@Test
 	public void doTest() {
 		logger.info("boardDao: {}", boardDao);
+		logger.info("userDao: {}", userDao);
 		
 //		List<Board> list = boardDao.read();
 //		logger.info("list size = {}", list.size());
