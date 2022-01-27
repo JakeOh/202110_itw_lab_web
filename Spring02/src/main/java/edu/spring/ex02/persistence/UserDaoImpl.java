@@ -25,4 +25,10 @@ public class UserDaoImpl implements UserDao {
 		return mapper.insert(user);
 	}
 	
+	@Override
+	public User checkUserId(String userid) {
+		log.info("checkUserId(userid={})", userid);
+		
+		return mapper.selectByUserId(userid);
+	}
 }

@@ -2,6 +2,7 @@ package edu.spring.ex02.mapper;
 
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Select;
 
 import edu.spring.ex02.domain.User;
 
@@ -15,5 +16,12 @@ public interface UserMapper {
 	
 	@Insert(SIGN_UP)
 	int insert(User user);
+	
+	// 중복 아이디 체크
+	String CHECK_USER_ID = 
+			"SELECT * FROM ${TABLE_USERS} WHERE ${COL_USERID} = #{userid}";
+	
+	@Select(CHECK_USER_ID)
+	User selectByUserId(String userid);
 	
 }

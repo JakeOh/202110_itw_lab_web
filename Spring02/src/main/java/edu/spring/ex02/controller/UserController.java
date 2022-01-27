@@ -45,7 +45,11 @@ public class UserController {
 		} else {
 			return "invalid";
 		}
-		
+	}
+	
+	@RequestMapping(value = "/signin", method = RequestMethod.GET)
+	public void signIn() {
+		log.info("signIn() GET 호출");
 	}
 
 }

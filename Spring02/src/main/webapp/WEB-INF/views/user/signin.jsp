@@ -13,23 +13,26 @@
     </head>
     <body>
         <div class="container-fluid">
-            <header class="jumbotron text-center">
-                <h1>메인 페이지</h1>
+            <header class="text-center">
+                <h1>로그인 페이지</h1>
             </header>
             
-            <nav>
-                <ul>
-                    <li>
-                        <a href="./user/register">회원 가입</a>
-                    </li>
-                    <li> <!-- TODO -->
-                        <a href="./user/signin">로그인</a>
-                    </li>
-                    <li>
-                        <a href="./board/main">게시판 메인</a>
-                    </li>
-                </ul>
+            <nav> <!-- TODO: 페이지 이동 메뉴 -->
             </nav>
+            
+            <div>
+                <form action="./signin" method="post">
+                    <div>
+                        <input type="text" name="userid" placeholder="아이디 입력" required />
+                    </div>
+                    <div>
+                        <input type="password" name="pwd" placeholder="비밀번호 입력" required />
+                    </div>
+                    <div>
+                        <input type="submit" value="로그인" />
+                    </div>
+                </form>
+            </div>
         
         </div>
         

@@ -21,8 +21,8 @@
         
             <nav> <!-- 메뉴 -->
                 <ul>
-                    <li> <!-- TODO -->
-                        <a href="">로그인</a>
+                    <li>
+                        <a href="../user/signin">로그인</a>
                     </li>
                     <li>
                         <a href="../">메인</a>
