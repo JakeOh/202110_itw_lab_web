@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import edu.spring.ex02.domain.Board;
 import edu.spring.ex02.service.BoardService;
@@ -85,5 +86,15 @@ public class BoardController {
 		boardService.delete(bno);
 		
 		return "redirect:/board/main";
+	}
+	
+	@RequestMapping(value = "/search", method = RequestMethod.GET)
+	public String search(int type, String keyword, Model model) {
+		log.info("search(type={}, keyword={})", type, keyword);
+		
+		List<Board> list = boardService.select(type, keyword);
+		model.addAttribute("boardList", list);  // jsp 파일에서 ${boardList} EL로 사용되기 때문에.
+		
+		return "board/main"; // "/WEB-INF/views/" + "board/main" + ".jsp" 파일을 view로 사용
 	}
 }
