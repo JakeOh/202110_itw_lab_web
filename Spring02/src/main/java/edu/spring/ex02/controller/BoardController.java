@@ -69,4 +69,21 @@ public class BoardController {
 		
 	}
 	
+	@RequestMapping(value = "/update", method = RequestMethod.POST)
+	public String update(Board board) {
+		log.info("update({}) POST 호출", board);
+		
+		boardService.update(board); // 게시글 수정 서비스 완료.
+		
+		return "redirect:/board/main"; // 게시판 메인으로 이동.
+	}
+	
+	@RequestMapping(value = "/delete", method = RequestMethod.GET)
+	public String delete(int bno) {
+		log.info("delete(bno={}) 호출", bno);
+		
+		boardService.delete(bno);
+		
+		return "redirect:/board/main";
+	}
 }
