@@ -23,7 +23,7 @@
             <div>
                 <form action="./signin" method="post">
                     <div>
-                        <input type="text" name="userid" placeholder="아이디 입력" required />
+                        <input type="text" name="userid" placeholder="아이디 입력" autofocus required />
                     </div>
                     <div>
                         <input type="password" name="pwd" placeholder="비밀번호 입력" required />
