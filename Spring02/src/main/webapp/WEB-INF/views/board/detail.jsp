@@ -82,9 +82,38 @@
         	function getAllReplies() {
         		// $.getJSON(요청URL, 콜백 함수): URL로 Ajax GET 요청을 보내고 
         		// JSON 문자열을 응답으로 전달받아서 처리하는 함수.
-                $.getJSON('/ex02/replies/all/' + boardNo, function (data) {
-                    console.log(data);
-                });
+                $.getJSON('/ex02/replies/all/' + boardNo, function (respText) {
+                    // console.log(data);
+                    // respText: REST Controller가 보내준 JSON 형식의 문자열 - 댓글들의 배열(array)
+                    
+                    $('#replies').empty(); // div[id="replies"]의 모든 하위 요소들을 삭제
+                    
+                    var list = ''; // div[id="replies"]의 하위 요소(HTML 코드)를 작성할 문자열.
+                    
+                    // 배열 respText의 원소들을 하나씩 꺼내서 콜백 함수를 호출.
+                    $(respText).each(function () {
+                    	var date = new Date(this.regdate); // JavaScript Date 객체 생성
+                    	var dateStr = date.toLocaleDateString() + ' ' + date.toLocaleTimeString();
+                    	list += '<div>'
+                    		   + '<input type="text" id="rno" name="rno" value="'
+                    		   + this.rno
+                    		   + '" readonly />'
+                    		   + '<input type="text" id="rtext" name="rtext" value="'
+                    		   + this.rtext
+                    		   +'" />'
+                    		   + '<input type="text" id="userid" name="userid" value="'
+                    		   + this.userid
+                    		   + '" readonly />'
+                    		   + '<input type="text" id="regdate" name="regdate" value="'
+                    		   + dateStr
+                    		   + '" readonly />'
+                    		   + '</div>';
+                    });
+                    
+                    // 완성된 HTML 문자열(list)를 div[id="replies"]의 하위 요소로 추가
+                    $('#replies').html(list);
+                    
+                }); // end getJSON()
         	
         	} // end getAllReplies()
         	
