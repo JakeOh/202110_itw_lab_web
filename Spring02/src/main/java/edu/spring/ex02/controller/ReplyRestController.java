@@ -35,7 +35,7 @@ public class ReplyRestController {
 		List<Reply> replyList = replyService.select(bno);
 		
 		// 댓글 리스트를 ResponseEntity 객체에 넣어서 클라이언트 전송.
-		ResponseEntity<List<Reply>> entity = new ResponseEntity<List<Reply>>(replyList, HttpStatus.OK);
+		ResponseEntity<List<Reply>> entity = new ResponseEntity<>(replyList, HttpStatus.OK);
 		
 		// POM.xml 파일에서 jackson-databind 라이브러리가 포함되어 있어야 함. 
 		// 리턴하는 ResponseEntity 객체를 DispatcherServlet이 jackson-databind 라이브러리를 사용해서
@@ -51,7 +51,7 @@ public class ReplyRestController {
 		
 		int result = replyService.insert(reply);
 		
-		ResponseEntity<Integer> entity = new ResponseEntity<Integer>(result, HttpStatus.OK);
+		ResponseEntity<Integer> entity = new ResponseEntity<>(result, HttpStatus.OK);
 		
 		return entity;
 	}
@@ -66,7 +66,7 @@ public class ReplyRestController {
 		
 		int result = replyService.update(reply);
 		
-		ResponseEntity<Integer> entity = new ResponseEntity<Integer>(result, HttpStatus.OK);
+		ResponseEntity<Integer> entity = new ResponseEntity<>(result, HttpStatus.OK);
 		
 		return entity;
 	}
@@ -77,7 +77,7 @@ public class ReplyRestController {
 		
 		int result = replyService.delete(rno);
 		
-		ResponseEntity<Integer> entity = new ResponseEntity<Integer>(result, HttpStatus.OK);
+		ResponseEntity<Integer> entity = new ResponseEntity<>(result, HttpStatus.OK);
 		
 		return entity;
 	}
