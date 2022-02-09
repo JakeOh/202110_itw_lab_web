@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -42,4 +43,17 @@ public class ReplyRestController {
 		return entity;
 	}
 
+	@RequestMapping(method = RequestMethod.POST)
+	public ResponseEntity<Integer> createReply(@RequestBody Reply reply) {
+		// @RequestBody: 클라이언트가 보내는 데이터가 요청 패킷 본문(body)에 포함되어 있다고 선언하는 어노테이션.
+		// 요청 시 보내는 데이터가 query string에 포함되어 있지 않고, form data도 아닌 경우에 사용.
+		log.info("createReply({})", reply);
+		
+		int result = replyService.insert(reply);
+		
+		ResponseEntity<Integer> entity = new ResponseEntity<Integer>(result, HttpStatus.OK);
+		
+		return entity;
+	}
+	
 }

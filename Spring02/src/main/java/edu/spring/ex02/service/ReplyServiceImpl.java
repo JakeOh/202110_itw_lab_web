@@ -16,7 +16,7 @@ public class ReplyServiceImpl implements ReplyService {
 	private static final Logger log = LoggerFactory.getLogger(ReplyServiceImpl.class);
 	
 	@Autowired
-	private  ReplyDao replyDao;
+	private ReplyDao replyDao;
 	
 	@Override
 	public List<Reply> select(int bno) {
@@ -25,4 +25,16 @@ public class ReplyServiceImpl implements ReplyService {
 		return replyDao.read(bno);
 	}
 
+	@Override
+	public int insert(Reply reply) {
+		// 댓글 테이블(replies)에 새로운 댓글 추가.
+		int result = replyDao.create(reply);
+		
+		// TODO: 게시판 테이블(boards)에 댓글수를 업데이트.
+		
+		// TODO: 댓글을 작성한 사용자에게 포인트 지급.
+		
+		return result;
+	}
+	
 }
