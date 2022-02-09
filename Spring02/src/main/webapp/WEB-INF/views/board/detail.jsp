@@ -119,6 +119,44 @@
         	
         	getAllReplies(); // 함수 호출
         	
+        	// 댓글 작성 완료 버튼 클릭 이벤트 처리
+        	$('#btn_create_reply').click(function (event) {
+        		// 댓글 내용을 읽음
+        		var replyText = $('#rtext').val();
+        		if (replyText == '') { // 입력된 댓글 내용이 없으면
+        			alert('댓글 내용을 입력하세요...');
+        			$('#rtext').focus();
+        			return; // 콜백 함수 종료
+        		}
+        		
+        		// 댓글 작성자 아이디
+        		var replier = $('#userid').val();
+        		
+        		// 댓글 insert 요청을 Ajax 방식으로 보냄.
+        		$.ajax({
+        			// 요청 주소
+        			url: '/ex02/replies',
+        			// 요청 타입
+        			type: 'POST',
+        			// 요청 HTTP 헤더
+        			headers: {
+        				'Content-Type': 'application/json',
+        				'X-HTTP-Method-Override': 'POST'
+        			},
+        			// 요청에 포함되는 데이터(JSON 문자열)
+        			data: JSON.stringify({
+        				'bno': boardNo,
+        				'rtext': replyText,
+        				'userid': replier
+        			}),
+        			// 성공 응답(200 response)이 왔을 때 브라우저가 실행할 콜백 함수
+        			success: function (resp) {
+        				console.log(resp);
+        				getAllReplies();  // 댓글 목록 업데이트
+        			}
+        		});
+        	});
+        	
         });
         </script>
     
