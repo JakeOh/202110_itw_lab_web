@@ -12,6 +12,11 @@
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="stylesheet" 
         	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" />
+        <style>
+        .reply {
+            margin: 8px;
+        }
+        </style>
     </head>
     <body>
         <div class="container-fluid">
@@ -94,7 +99,7 @@
                     $(respText).each(function () {
                     	var date = new Date(this.regdate); // JavaScript Date 객체 생성
                     	var dateStr = date.toLocaleDateString() + ' ' + date.toLocaleTimeString();
-                    	list += '<div>'
+                    	list += '<div class="reply">'
                     		   + '<input type="text" id="rno" name="rno" value="'
                     		   + this.rno
                     		   + '" readonly />'
