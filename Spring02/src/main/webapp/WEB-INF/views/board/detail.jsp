@@ -196,6 +196,30 @@
         		});
         	});
         	
+        	// 댓글 삭제 버튼
+        	$('#replies').on('click', '.reply_item .reply_delete', function (event) {
+        		var rno = $(this).prevAll('#rno').val();
+        		var result = confirm(rno + '번 댓글을 정말 삭제할까요?');
+        		if (result) { // 확인(Yes) 버튼을 클릭했을 때
+        			$.ajax({
+        				// 요청 URL
+        				url: '/ex02/replies/' + rno,
+        				// 요청 타입
+        				type: 'DELETE',
+        				// 요청 헤더
+        				headers: {
+        					'Content-Type': 'application/json',
+        					'X-HTTP-Method-Override': 'DELETE'
+        				},
+        				// 성공 응답 콜백 함수
+        				success: function () {
+        					alert(rno + '번 댓글 삭제 성공!');
+        					getAllReplies();
+        				}
+        			});
+        		}
+        	});
+        	
         });
         </script>
     
